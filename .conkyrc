@@ -29,7 +29,20 @@ use_spacer left
 use_xft yes
 xftalpha .2
 xftfont ProFont:size=10
-# ${execi 5 bspc control --get-status | cut -d ":" -f 2-11 | sed -e 's/:/ /g'} 
 
 TEXT
-${voffset 1}$color3${goto 6}${time %m/%d/%y} $color2|$color3 $nodename_short $color2|$color3 ${execpi 5 bspc control --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}$color2|$color3 $color4${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | head -n 1} ${goto 1450}${color3}temp $color1${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} $color2|$color3 cpu $color1${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color1${memperc}% ${color3}sw${color1} ${swapperc}% $color2|$color3 ${execi 3600 vnstat -i wlan0 --oneline | cut -d ';' -f 6} $color2|$color3 vol: $color1${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% $color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} $color2|$color3 ${time %H:%M}
+${voffset 1}$color3${goto 6}${time %m/%d/%y} \
+$color2|$color3 $nodename_short $color2|$color3 \
+${execp bspc control --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}\
+$color2|$color4\
+${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | sed -e ':a;N;$!ba;s/\n/ /g'} \
+${goto 1380}${color3}temp $color1\
+${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \
+$color2|$color3 cpu $color1${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color1${memperc}% \
+${color3}sw${color1} ${swapperc}% $color2|$color3 \
+${execi 360 acpi -V | grep Battery | cut -d " " -f 5 | head -n 1} $color2|$color3 \
+${execi 3600 vnstat -i wlan0 --oneline | cut -d ';' -f 6} \
+$color2|$color3 vol: \
+$color1${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% \
+$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \
+$color2|$color3 ${time %H:%M}

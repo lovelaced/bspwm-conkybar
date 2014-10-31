@@ -4,10 +4,11 @@ alignment top_left
 border_inner_margin 0
 border_outer_margin 0
 border_width 0
-color1 CC37AA
+color5 FFFFFF
 color2 8a8a8a
 color3 D0D0D0
 color4 FE5E53
+color5 CC37AA
 default_color D0D0D0
 double_buffer yes
 draw_borders no
@@ -36,13 +37,13 @@ $color2|$color3 $nodename_short $color2|$color3 \
 ${execp bspc control --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}\
 $color2|$color4\
 ${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | sed -e ':a;N;$!ba;s/\n/ /g'} \
-${goto 1380}${color3}temp $color1\
-${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \
-$color2|$color3 cpu $color1${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color1${memperc}% \
-${color3}sw${color1} ${swapperc}% $color2|$color3 \
-${execi 360 acpi -V | grep Battery | cut -d " " -f 5 | head -n 1} $color2|$color3 \
-${execi 3600 vnstat -i wlan0 --oneline | cut -d ';' -f 6} \
-$color2|$color3 vol: \
-$color1${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% \
-$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \
-$color2|$color3 ${time %H:%M}
+$alignr${color3}temp $color5\
+$alignr${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \
+$alignr$color2|$color3 cpu $color5${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color5${memperc}% \
+$alignr${color3}sw${color5} ${swapperc}% $color2|$color3 \
+$alignr${execi 360 acpi -V | grep Battery | cut -d " " -f 5 | head -n 1} $color2|$color3 \
+$alignr${execi 3600 vnstat -i wlan0 --oneline | cut -d ';' -f 6} \
+$alignr$color2|$color3 vol: \
+$alignr$color5${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% \
+$alignr$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \
+$alignr$color2|$color3 ${time %H:%M} \

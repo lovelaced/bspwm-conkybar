@@ -9,10 +9,10 @@ SPACE=$(bspc control --get-status | cut -d ":" -f $i)
 		echo -ne "\${color4}" 
 	elif [[ "$SPACE" == *O* ]] #focused desktop color
 	then
-		echo -ne "\${color1}" #unfocused, non-free desktop color
-	elif [[ "$SPACE" == *o* ]]
+		echo -ne "\${color1}"
+	elif [[ "$SPACE" == *o* ]] 
 	then
-		echo -ne "\${color3}"
+		echo -ne "\${color3}" #unfocused, non-free desktop color
 	else
 		echo -ne "\${color2}" #free desktop color
 	fi

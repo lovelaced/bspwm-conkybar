@@ -16,5 +16,5 @@ SPACE=$(bspc control --get-status | cut -d ":" -f $i)
 	else
 		echo -ne "\${color2}" #free desktop color
 	fi
-echo -ne "${SPACE:1} " #name of desktop as set in bspwmrc
+echo -ne "${SPACE:1} " #print workspaces
 done

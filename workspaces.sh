@@ -1,20 +1,24 @@
 #!/bin/bash
 # workspaces.sh
 
+# starting at 2 because the first returned isn't a workspace
+# however many workspaces you have; I use 10
 for i in {2..11}
 do
+
+# query bspc control for the status of the workspaces
 SPACE=$(bspc control --get-status | cut -d ":" -f $i)
-	if [[ "$SPACE" == *u* ]] #urgent desktop color
+	if [[ "$SPACE" == *u* ]] # check for urgency
 	then
-		echo -ne "\${color4}" 
-	elif [[ "$SPACE" == *O* ]] #focused desktop color
+		echo -ne "\${color4}" # urgent workspace color
+	elif [[ "$SPACE" == *O* ]] # check for focused workspace
 	then
-		echo -ne "\${color1}"
-	elif [[ "$SPACE" == *o* ]] 
+		echo -ne "\${color1}" # active workspace color
+	elif [[ "$SPACE" == *o* ]]
 	then
-		echo -ne "\${color3}" #unfocused, non-free desktop color
+		echo -ne "\${color3}" # unfocused, non-free desktop color
 	else
-		echo -ne "\${color2}" #free desktop color
+		echo -ne "\${color2}" # free desktop color
 	fi
-echo -ne "${SPACE:1} " #print workspaces
+echo -ne "${SPACE:1} " # print workspaces to conky
 done

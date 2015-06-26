@@ -4,11 +4,11 @@ alignment top_left
 border_inner_margin 0
 border_outer_margin 0
 border_width 0
-color5 FFFFFF
+color1 FFFFFF
 color2 8a8a8a
 color3 D0D0D0
-color4 CDEE69
-color5 72B3CC
+color4 f9d72d 
+color5 2E8FAC
 default_color D0D0D0
 double_buffer yes
 draw_borders no
@@ -16,8 +16,8 @@ draw_graph_borders no
 draw_shades no
 gap_x 0
 gap_y 0
-maximum_width 1280 0
-minimum_size 1280 0
+maximum_width 1920 0
+minimum_size 1920 0
 own_window yes
 own_window_argb_visual yes
 own_window_argb_value 178
@@ -29,7 +29,7 @@ update_interval 1
 use_spacer left
 use_xft yes
 xftalpha .2
-xftfont ProFont:size=10
+xftfont ProFont:size=12
 
 TEXT
 ${voffset 1}$color2${goto 6}${time %m/%d/%y} \
@@ -40,8 +40,9 @@ $color2|$color4\
 $alignr${color3}temp $color5\
 $alignr${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \
 $alignr$color2|$color3 cpu $color5${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color5${memperc}% \
-$alignr${color3}sw${color5} ${swapperc}% $color2|$color3 \
-$alignr${execi 360 acpi -V | cut -d " " -f 5 | head -n 1} \
+$alignr$color2|$color3 ${execp wpa_cli status | awk -F 'wpa_state=' '{print tolower($2)}' | sed ':a;N;$!ba;s/\n//g'} \
+$alignr$color2|$color3 \
+$alignr${execi 360 acpi -V | grep Discharging | cut -d " " -f 4-5 | head -n 1 | sed s/,//} \
 $alignr$color2|$color3 vol: \
 $alignr$color5${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% \
 $alignr$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \

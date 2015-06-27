@@ -51,40 +51,29 @@ xftalpha .2
 xftfont ProFont:size=12
 
 TEXT
-
 # date
 ${voffset 1}$color2${goto 6}${time %m/%d/%y} \
-
 # hostname
 | $nodename_short $color2|$color3 \
-
 # bspwm workspaces
 ${execp bspc control --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}\
 $color2|$color4\
-
 # irc highlights
 # ${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | sed -e ':a;N;$!ba;s/\n/ /g'}
 $alignr${color3}temp $color5\
-
 # CPU temperature
 $alignr${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \
-
 # memory usage percentage
 $alignr$color2|$color3 cpu $color5${cpu cpu1}% ${cpu cpu2}% $color2|$color3 ram $color5${memperc}% \
-
 # status of wifi interface
 $alignr$color2|$color3 ${execp wpa_cli status | awk -F 'wpa_state=' '{print tolower($2)}' | sed ':a;N;$!ba;s/\n//g'} \
 $alignr$color2|$color3 \
-
 # battery percentage and remaining time
 $alignr${execi 360 acpi -V | grep Discharging | cut -d " " -f 4-5 | head -n 1 | sed s/,//} \
-
 # volume percentage
 $alignr$color2|$color3 vol: \
 $alignr$color5${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m 1 % | sed -e 's/[][%]//g'| sed -e 's/5://g'}% \
-
 # whether sound is on or muted (off)
 $alignr$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \
-
 # time
 $alignr$color2|$color3 ${time %H:%M} \

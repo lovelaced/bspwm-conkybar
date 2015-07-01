@@ -60,6 +60,7 @@ ${execp bspc control --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}
 $color2|$color4\
 # irc highlights
 # ${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | sed -e ':a;N;$!ba;s/\n/ /g'}
+$alignr$color2${execp journalctl -n 1 | tail -n 1} | \
 $alignr${color3}temp $color5\
 # CPU temperature
 $alignr${execi 60 sensors | grep temp1: | cut -b 16-21 | head -n 1} \

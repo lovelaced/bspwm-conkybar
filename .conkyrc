@@ -48,7 +48,7 @@ use_xft yes
 xftalpha .2
 
 # choose font and size
-xftfont ProFont:size=12
+xftfont ProFont:size=9
 
 TEXT
 # date

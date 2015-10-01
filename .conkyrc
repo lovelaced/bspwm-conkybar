@@ -1,56 +1,61 @@
-# conkyrc
+conky.config = {
+-- conkyrc
 
-alignment top_left
-border_inner_margin 0
-border_outer_margin 0
-border_width 0
+	alignment = 'top_left',
+-- Anton: These three cannot all be zero using the current build, see: https://github.com/brndnmtthws/conky/issues/12
+	border_inner_margin = 1,
+	border_outer_margin = 0,
+	border_width = 0,
 
-# color of active workspace
-color1 FFFFFF
+-- color of active workspace
+	color1 = '#FFFFFF',
 
-# inactive workspaces and divider color
-color2 8a8a8a
+-- inactive workspaces and divider color
+	color2 = '#8a8a8a',
 
-# workspaces which have windows but aren't focused
-color3 D0D0D0
+-- workspaces which have windows but aren't focused
+	color3 = '#D0D0D0',
 
-# urgency hinting color
-color4 f9d72d
+-- urgency hinting color
+	color4 = '#f9d72d',
 
-# color of temps and percentages
-color5 2E8FAC
+-- color of temps and percentages
+	color5 = '#2E8FAC',
 
-default_color D0D0D0
-double_buffer yes
-draw_borders no
-draw_graph_borders no
-draw_shades no
-gap_x 0
-gap_y 0
+	default_color = '#D0D0D0',
+	double_buffer = true,
+	draw_borders = false,
+	draw_graph_borders = false,
+	draw_shades = false,
+	gap_x = 0,
+	gap_y = 0,
 
-# adjust to the width of your screen
-maximum_width 1920 0
-minimum_size 1920 0
+-- adjust to the width of your screen
+	maximum_width = 1024,
+	minimum_width = 1024, 
+    minimum_height = 0,
 
-own_window yes
-own_window_argb_visual yes
-own_window_argb_value 178
+	own_window = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 178,
 
-# bar background color
-own_window_colour 000000
+-- bar background color
+	own_window_colour = '#000000',
 
-own_window_type panel
-own_window_hints undecorate,below,sticky,skip_taskbar,skip_pager
-pad_percents 2
-update_interval 1
-use_spacer left
-use_xft yes
-xftalpha .2
+	own_window_type = 'panel',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	pad_percents = 2,
+	update_interval = 1,
+	use_spacer = 'left',
+	use_xft = true,
+	xftalpha = .2,
 
-# choose font and size
-xftfont ProFont:size=9
+-- choose font and size
+	font = 'ProFont:size=9',
 
-TEXT
+};
+
+conky.text = [[
 # date
 ${voffset 1}$color2${goto 6}${time %m/%d/%y} \
 # hostname
@@ -78,3 +83,4 @@ $alignr$color5${execi 5 amixer | grep -A 6 "Master" | awk {'print $4'} | grep -m
 $alignr$color2${execi 5 amixer | grep -A 6 "Master" | awk {'print $6'} | sed -e ':a;N;$!ba;s/\n//g'} \
 # time
 $alignr$color2|$color3 ${time %H:%M} \
+]];

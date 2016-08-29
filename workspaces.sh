@@ -6,8 +6,8 @@
 for i in {2..11}
 do
 
-# query bspc control for the status of the workspaces
-SPACE=$(bspc control --get-status | cut -d ":" -f $i)
+# query bspc wm for the status of the workspaces
+SPACE=$(bspc wm --get-status | cut -d ":" -f $i)
 	if [[ "$SPACE" == *u* ]] # check for urgency
 	then
 		echo -ne "\${color4}" # urgent workspace color

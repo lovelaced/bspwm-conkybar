@@ -3,7 +3,7 @@
 
 # starting at 2 because the first returned isn't a workspace
 # however many workspaces you have; I use 10
-for i in {2..11}
+for i in {2..8}
 do
 
 # query bspc wm for the status of the workspaces

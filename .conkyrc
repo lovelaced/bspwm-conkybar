@@ -1,4 +1,8 @@
 conky.config = {
+conky.config = {
+	lua_load = '~/.config/conky/lua/conky-bspwm-desktops/bspwm-desktops.lua',
+--      lua_load = '~/.config/conky/conky-draw/conky_draw.lua',
+--      lua_draw_hook_pre = 'main',
 -- conkyrc
 
 	alignment = 'top_left',
@@ -58,10 +62,11 @@ conky.config = {
 conky.text = [[
 # date
 ${voffset 1}$color2${goto 6}${time %m/%d/%y} \
+${lua conky_bspwm_desktops 170 4 80} \
 # hostname
 | $nodename_short $color2|$color3 \
 # bspwm workspaces
-${execp bspc wm --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}\
+#${execp bspc wm --get-status | cut -d ":" -f 2 | xargs $HOME/workspaces.sh}\
 $color2|$color4\
 # irc highlights
 # ${execi 5 cat $HOME/.weechat/highlights.txt | cut -d ":" -f 1 | sed -e ':a;N;$!ba;s/\n/ /g'}
